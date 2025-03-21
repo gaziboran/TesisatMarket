@@ -76,15 +76,15 @@ class RegisterController extends Controller
                 'is_admin' => false,
             ]);
 
-            // Başarılı ise login sayfasına yönlendir
+            // Başarılı kayıt durumunda
             return redirect()->route('login')
-                ->with('success', 'Üyeliğiniz başarıyla oluşturuldu. Lütfen giriş yapınız.');
+                ->with('success', 'Tebrikler! Başarıyla üye oldunuz. Lütfen giriş yapınız.');
 
         } catch (\Exception $e) {
-            // Hata durumunda geri dön
+            // Başarısız kayıt durumunda
             return back()
                 ->withInput()
-                ->withErrors(['error' => 'Kayıt işlemi sırasında bir hata oluştu. Lütfen tekrar deneyin.']);
+                ->withErrors(['error' => 'Üyelik işlemi başarısız oldu. Lütfen tekrar deneyiniz.']);
         }
     }
 }
