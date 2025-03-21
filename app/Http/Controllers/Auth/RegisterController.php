@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -40,33 +40,51 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
+    public function showRegistrationForm()
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        return view('auth.register');
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
-    protected function create(array $data)
+    public function register(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        // Validasyon
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'phone' => 'required|string|max:15',
+            'password' => 'required|string|min:8|confirmed',
+            'terms' => 'required',
+        ], [
+            'name.required' => 'Ad Soyad alanı zorunludur.',
+            'email.required' => 'E-posta adresi zorunludur.',
+            'email.email' => 'Geçerli bir e-posta adresi giriniz.',
+            'email.unique' => 'Bu e-posta adresi zaten kayıtlı.',
+            'phone.required' => 'Telefon numarası zorunludur.',
+            'password.required' => 'Şifre alanı zorunludur.',
+            'password.min' => 'Şifre en az 8 karakter olmalıdır.',
+            'password.confirmed' => 'Şifre tekrarı eşleşmiyor.',
+            'terms.required' => 'Üyelik sözleşmesini kabul etmelisiniz.',
         ]);
+
+        try {
+            // Kullanıcı oluştur
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'password' => Hash::make($request->password),
+                'is_admin' => false,
+            ]);
+
+            // Başarılı ise login sayfasına yönlendir
+            return redirect()->route('login')
+                ->with('success', 'Üyeliğiniz başarıyla oluşturuldu. Lütfen giriş yapınız.');
+
+        } catch (\Exception $e) {
+            // Hata durumunda geri dön
+            return back()
+                ->withInput()
+                ->withErrors(['error' => 'Kayıt işlemi sırasında bir hata oluştu. Lütfen tekrar deneyin.']);
+        }
     }
 }
