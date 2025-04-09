@@ -20,3 +20,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
 // Login rotaları
 Route::get('/giris-yap', [LoginController::class, 'showLoginForm'])->name('giris.yap');
 Route::post('/giris-yap', [LoginController::class, 'login']);
+
+// Ürünler sayfası
+Route::get('/market', [App\Http\Controllers\MarketController::class, 'index'])->name('market.index');

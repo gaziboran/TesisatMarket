@@ -10,22 +10,21 @@
             background-color: #f5f5f5;
         }
         .top-bar {
-            background: white;
+            background-color: #f27a1a;
             padding: 15px 0;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
         .top-container {
             max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             padding: 0 20px;
+            display: flex;
+            justify-content: flex-start;
         }
         .logo {
             font-size: 24px;
             font-weight: bold;
-            color: #333;
+            color: white;
             text-decoration: none;
         }
         .search-bar {
@@ -140,16 +139,6 @@
     <div class="top-bar">
         <div class="top-container">
             <a href="/" class="logo">TesisatMarket</a>
-            <div class="search-bar">
-                <input type="text" class="search-input" placeholder="Aradığınız ürün, kategori veya markayı yazınız">
-                <span class="search-icon">🔍</span>
-            </div>
-            <div class="top-menu">
-                <a href="{{ route('login') }}">Giriş Yap</a>
-                <a href="{{ route('register') }}">Üye Ol</a>
-                <a href="#">Favorilerim</a>
-                <a href="#">Sepetim</a>
-            </div>
         </div>
     </div>
 

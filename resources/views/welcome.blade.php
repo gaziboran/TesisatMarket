@@ -12,9 +12,71 @@
             background-size: cover;
             background-position: center;
         }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .top-bar {
+            background-color: #f27a1a;
+            padding: 15px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .top-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        .main-content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+        .btn-orange {
+            background-color: #f27a1a;
+            color: white;
+        }
+        .btn-orange:hover {
+            background-color: #e86f0c;
+        }
+        .btn-gray {
+            background-color: #666666;
+            color: white;
+        }
+        .btn-gray:hover {
+            background-color: #555555;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
+    <div class="top-bar">
+        <div class="top-container">
+            <a href="/" class="logo">TesisatMarket</a>
+        </div>
+    </div>
+
     <div class="min-h-screen flex items-center justify-center login-bg">
         <div class="absolute inset-0 bg-black opacity-50 backdrop-blur-sm"></div>
         
@@ -107,6 +169,20 @@
                     </div>
                 </form>
             </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="button-group">
+            @if (Route::has('login'))
+                @auth
+                    <a href="{{ url('/home') }}" class="btn btn-orange">Ana Sayfa</a>
+                @else
+                    <a href="{{ route('login') }}" class="btn btn-orange">Giriş Yap</a>
+                    <a href="{{ route('register') }}" class="btn btn-orange">Üye Ol</a>
+                    <a href="{{ route('market.index') }}" class="btn btn-gray">Üye Olmadan Devam Et</a>
+                @endauth
+            @endif
         </div>
     </div>
 
