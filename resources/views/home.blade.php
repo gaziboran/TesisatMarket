@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dashboard - TesisatMarket</title>
+    <title>TesisatMarket - Hoşgeldiniz</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -10,7 +10,7 @@
             background-color: #f5f5f5;
         }
         .top-bar {
-            background: white;
+            background-color: #f27a1a;
             padding: 15px 0;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
@@ -25,7 +25,7 @@
         .logo {
             font-size: 24px;
             font-weight: bold;
-            color: #333;
+            color: white;
             text-decoration: none;
         }
         .search-bar {
@@ -39,80 +39,94 @@
             padding: 10px 15px;
             border: 1px solid #e6e6e6;
             border-radius: 8px;
-            background-color: #f5f5f5;
+            background-color: white;
             font-size: 14px;
         }
         .user-menu {
             display: flex;
             gap: 20px;
             align-items: center;
-            margin-left: auto;
         }
         .user-menu a {
+            color: white;
             text-decoration: none;
-            color: #333;
             font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
         }
         .user-name {
+            color: white;
             font-weight: 500;
+        }
+        .logout-btn {
+            background-color: white;
             color: #f27a1a;
-            white-space: nowrap;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
         }
-        .main-content {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
+        .categories {
+            background: white;
+            padding: 10px 0;
+            border-bottom: 1px solid #e6e6e6;
         }
-        .dashboard-card {
+        .category-list {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .category-list a {
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .category-list a:hover {
+            color: #f27a1a;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .product-card {
             background: white;
             border-radius: 8px;
+            padding: 15px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            padding: 20px;
-            margin-bottom: 20px;
+            transition: transform 0.2s;
         }
-        .welcome-message {
-            font-size: 24px;
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .product-title {
+            font-size: 16px;
+            font-weight: 500;
             color: #333;
             margin-bottom: 10px;
         }
-        .sub-message {
+        .product-price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #f27a1a;
+        }
+        .product-category {
+            font-size: 12px;
             color: #666;
-            font-size: 16px;
-        }
-        .menu-categories {
-            display: flex;
-            gap: 20px;
-            margin-top: 20px;
-            padding: 15px 0;
-            border-bottom: 1px solid #e6e6e6;
-        }
-        .menu-categories a {
-            text-decoration: none;
-            color: #333;
-            font-size: 14px;
-            padding: 8px 16px;
-            border-radius: 4px;
-        }
-        .menu-categories a:hover {
-            background-color: #f5f5f5;
-        }
-        .logout-btn {
-            background-color: #f27a1a;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-size: 14px;
-        }
-        .logout-btn:hover {
-            background-color: #e86f0c;
+            margin-bottom: 5px;
         }
     </style>
 </head>
 <body>
+    <!-- Üst bar -->
     <div class="top-bar">
         <div class="top-container">
             <a href="/" class="logo">TesisatMarket</a>
@@ -136,23 +150,45 @@
         </div>
     </div>
 
-    <div class="menu-categories">
+    <!-- Kategoriler -->
+    <div class="categories">
         <div class="top-container">
-            <a href="#">Anasayfa</a>
-            <a href="#">Ürünler</a>
-            <a href="#">Kategoriler</a>
-            <a href="#">Kampanyalar</a>
-            <a href="#">Hesabım</a>
+            <ul class="category-list">
+                <li><a href="#">Tüm Ürünler</a></li>
+                <li><a href="#">Banyo</a></li>
+                <li><a href="#">Su Tesisatı</a></li>
+                <li><a href="#">Vitrifiye</a></li>
+                <li><a href="#">Armatür</a></li>
+                <li><a href="#">Duş Sistemleri</a></li>
+                <li><a href="#">Musluk ve Bataryalar</a></li>
+                <li><a href="#">Klozet ve Rezervuarlar</a></li>
+                <li><a href="#">Lavabolar</a></li>
+            </ul>
         </div>
     </div>
 
+    <!-- Ana içerik -->
     <div class="main-content">
-        <div class="dashboard-card">
-            <h1 class="welcome-message">Hoş Geldiniz, {{ Auth::user()->name }}!</h1>
-            <p class="sub-message">TesisatMarket'te size özel fırsatları kaçırmayın.</p>
-        </div>
+        <!-- Ürün Grid -->
+        <div class="products-grid">
+            <!-- Örnek Ürün 1 -->
+            <div class="product-card">
+                <img src="https://via.placeholder.com/250" alt="Ürün" class="product-image">
+                <div class="product-category">Banyo</div>
+                <div class="product-title">Ankastre Duş Bataryası</div>
+                <div class="product-price">1.299,90 ₺</div>
+            </div>
 
-        <!-- Buraya diğer dashboard içerikleri eklenebilir -->
+            <!-- Örnek Ürün 2 -->
+            <div class="product-card">
+                <img src="https://via.placeholder.com/250" alt="Ürün" class="product-image">
+                <div class="product-category">Su Tesisatı</div>
+                <div class="product-title">PPR Boru 20mm</div>
+                <div class="product-price">24,90 ₺</div>
+            </div>
+
+            <!-- Diğer örnek ürünler aynı şekilde devam edecek -->
+        </div>
     </div>
 </body>
 </html>
