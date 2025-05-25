@@ -160,27 +160,27 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('login') }}">
-                @csrf
-                
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
+
                 <div class="form-group">
                     <label for="email">E-posta</label>
                     <input type="email" id="email" name="email" value="{{ old('email') }}" required>
-                </div>
+                        </div>
 
                 <div class="form-group">
                     <label for="password">Şifre</label>
                     <input type="password" id="password" name="password" required>
-                </div>
+                        </div>
 
                 <div class="remember-forgot">
                     <label>
                         <input type="checkbox" name="remember"> Beni Hatırla
-                    </label>
+                                    </label>
                     <a href="{{ route('password.request') }}" style="color: #f27a1a; text-decoration: none;">
                         Şifremi Unuttum
                     </a>
-                </div>
+                        </div>
 
                 <button type="submit" class="btn-login">Giriş Yap</button>
 

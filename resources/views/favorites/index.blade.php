@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>TesisatMarket - Hoşgeldiniz</title>
+    <title>Favorilerim - TesisatMarket</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -27,20 +27,6 @@
             font-weight: bold;
             color: white;
             text-decoration: none;
-        }
-        .search-bar {
-            flex-grow: 0;
-            width: 40%;
-            margin: 0 20px;
-            position: relative;
-        }
-        .search-input {
-            width: 100%;
-            padding: 10px 15px;
-            border: 1px solid #e6e6e6;
-            border-radius: 8px;
-            background-color: white;
-            font-size: 14px;
         }
         .user-menu {
             display: flex;
@@ -80,26 +66,68 @@
         .logout-btn:hover {
             background-color: #d65f00;
         }
-        .categories {
+        .main-content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .favorites-container {
             background: white;
-            padding: 10px 0;
-            border-bottom: 1px solid #e6e6e6;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
-        .category-list {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .category-list a {
+        .favorites-title {
+            font-size: 24px;
+            font-weight: 600;
             color: #333;
+            margin-bottom: 20px;
+        }
+        .favorites-empty {
+            text-align: center;
+            padding: 40px 0;
+            color: #666;
+        }
+        .favorites-empty-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #ddd;
+        }
+        .favorites-empty-text {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .start-shopping {
+            display: inline-block;
+            background-color: #f27a1a;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
             text-decoration: none;
-            font-size: 14px;
             font-weight: 500;
         }
-        .category-list a:hover {
-            color: #f27a1a;
+        .start-shopping:hover {
+            background-color: #e86f0c;
+        }
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #f5f5f5;
+            color: #666;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 20px;
+            transition: background-color 0.2s;
+        }
+        .back-button:hover {
+            background-color: #e0e0e0;
+        }
+        .back-button svg {
+            width: 16px;
+            height: 16px;
         }
         .products-grid {
             display: grid;
@@ -147,9 +175,6 @@
     <div class="top-bar">
         <div class="top-container">
             <a href="/" class="logo">TesisatMarket</a>
-            <div class="search-bar">
-                <input type="text" class="search-input" placeholder="Aradığınız ürün, kategori veya markayı yazınız">
-            </div>
             <div class="user-menu">
                 <div class="user-welcome">
                     <span class="welcome-text">Hoş Geldiniz,</span>
@@ -170,49 +195,45 @@
         </div>
     </div>
 
-    <!-- Kategoriler -->
-    <div class="categories">
-        <div class="top-container">
-            <ul class="category-list">
-                <li><a href="#">Tüm Ürünler</a></li>
-                <li><a href="#">Banyo</a></li>
-                <li><a href="#">Su Tesisatı</a></li>
-                <li><a href="#">Vitrifiye</a></li>
-                <li><a href="#">Armatür</a></li>
-                <li><a href="#">Duş Sistemleri</a></li>
-                <li><a href="#">Musluk ve Bataryalar</a></li>
-                <li><a href="#">Klozet ve Rezervuarlar</a></li>
-                <li><a href="#">Lavabolar</a></li>
-            </ul>
-        </div>
-    </div>
-
     <!-- Ana içerik -->
     <div class="main-content">
-        <!-- Ürün Grid -->
-        <div class="products-grid">
-            <!-- Örnek Ürün 1 -->
-            <div class="product-card">
-                <a href="{{ route('product.show', 1) }}" style="text-decoration:none;color:inherit;">
-                    <img src="https://www.yapimarka.com/resimler/Kale-Sempre-Ankastre-Dus-Seti-22.jpg.webp" alt="Ürün" class="product-image">
-                    <div class="product-category">Banyo</div>
-                    <div class="product-title">Ankastre Duş Bataryası</div>
-                    <div class="product-price">1.699,90 ₺</div>
-                </a>
-            </div>
-
-            <!-- Örnek Ürün 2 -->
-            <div class="product-card">
-                <a href="{{ route('product.show', 2) }}" style="text-decoration:none;color:inherit;">
-                    <img src="https://nalburxmlbayi.com/image/cache/catalog/2-pprc-pvc-boru/pprc-pn10-plastik-kompozit-su-borusu-adem-kiral-trendyol-nalburxmlbayi-1-1000x1000.webp" alt="Ürün" class="product-image">
-                    <div class="product-category">Su Tesisatı</div>
-                    <div class="product-title">PPR Boru 20mm</div>
-                    <div class="product-price">24,90 ₺</div>
-                </a>
-            </div>
-
-            <!-- Diğer örnek ürünler aynı şekilde devam edecek -->
+        <a href="{{ route('home') }}" class="back-button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Geri Dön
+        </a>
+        <div class="favorites-container">
+            <h1 class="favorites-title">Favorilerim</h1>
+            @if(count($favorites) > 0)
+                <div class="products-grid">
+                    @foreach($favorites as $product)
+                        <div class="product-card">
+                            <a href="{{ route('product.show', $product['id']) }}" style="text-decoration:none;color:inherit;">
+                                <img src="{{ $product['image'] }}" alt="{{ $product['name'] }}" class="product-image">
+                                <div class="product-category">{{ $product['category'] }}</div>
+                                <div class="product-title">{{ $product['name'] }}</div>
+                                <div class="product-price">{{ number_format($product['price'], 2, ',', '.') }} ₺</div>
+                            </a>
+                            <form action="{{ route('favorites.remove', $product['id']) }}" method="POST" style="margin-top:10px;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" style="background:#fff;color:#f27a1a;border:2px solid #f27a1a;padding:6px 16px;border-radius:6px;font-weight:600;cursor:pointer;transition:background 0.2s;">Favorilerden Kaldır</button>
+                            </form>
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <div class="favorites-empty">
+                    <div class="favorites-empty-icon">❤️</div>
+                    <div class="favorites-empty-text">Henüz favori ürününüz bulunmuyor.</div>
+                    <a href="{{ route('home') }}" class="start-shopping">Alışverişe Başla</a>
+                </div>
+            @endif
         </div>
     </div>
+    @if(session('success'))
+        <script>alert('{{ session('success') }}');</script>
+    @endif
 </body>
-</html>
+</html> 

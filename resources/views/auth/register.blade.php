@@ -31,7 +31,7 @@
 
             <!-- Form -->
             <form method="POST" action="{{ route('register') }}" class="p-8 space-y-6">
-                @csrf
+                        @csrf
 
                 <!-- Ad Soyad -->
                 <div>
@@ -39,10 +39,10 @@
                     <input type="text" id="name" name="name" value="{{ old('name') }}"
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                         placeholder="Adınız ve Soyadınız">
-                    @error('name')
+                                @error('name')
                         <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-                    @enderror
-                </div>
+                                @enderror
+                            </div>
 
                 <!-- E-posta -->
                 <div>
@@ -53,7 +53,7 @@
                     @error('email')
                         <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                     @enderror
-                </div>
+                        </div>
 
                 <!-- Telefon -->
                 <div>
@@ -63,8 +63,8 @@
                         placeholder="05XX XXX XX XX">
                     @error('phone')
                         <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-                    @enderror
-                </div>
+                                @enderror
+                        </div>
 
                 <!-- Şifre -->
                 <div>
@@ -72,10 +72,10 @@
                     <input type="password" id="password" name="password"
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                         placeholder="••••••••">
-                    @error('password')
+                                @error('password')
                         <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-                    @enderror
-                </div>
+                                @enderror
+                            </div>
 
                 <!-- Şifre Tekrar -->
                 <div>
@@ -83,7 +83,7 @@
                     <input type="password" id="password_confirmation" name="password_confirmation"
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                         placeholder="••••••••">
-                </div>
+                        </div>
 
                 <!-- Üyelik Sözleşmesi -->
                 <div class="flex items-start">
@@ -95,14 +95,14 @@
                         <label for="terms" class="text-sm text-gray-700">
                             <a href="#" class="text-orange-600 hover:text-orange-700 font-medium">Üyelik sözleşmesini</a> okudum ve kabul ediyorum
                         </label>
-                    </div>
-                </div>
+                            </div>
+                        </div>
 
                 <!-- Üye Ol Butonu -->
                 <button type="submit"
                     class="w-full bg-orange-600 text-white py-3 rounded-lg font-medium hover:bg-orange-700 transition-colors">
                     Üye Ol
-                </button>
+                                </button>
 
                 <!-- Giriş Yap Linki -->
                 <p class="text-center text-sm text-gray-600">
@@ -111,7 +111,7 @@
                         Giriş Yap
                     </a>
                 </p>
-            </form>
+                    </form>
         </div>
     </div>
 </body>
